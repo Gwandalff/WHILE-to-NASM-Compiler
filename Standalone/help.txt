@@ -1,0 +1,108 @@
+\033[1mNAME\033[0m
+       
+	wh - Compile .wh files.
+
+\033[1mSYNOPSIS\033[0m
+           
+	wh filename [-stats] [-o outname]
+
+        filename
+           	The name of the WHILE file to be compiled.
+           
+\033[1mDESCRIPTION\033[0m
+
+        The wh command compile the file given in args. The file needs to be written with a correct WHILE syntax. 
+        The "stats" option add more informations at the end of the compiled program execution. See Options section.
+	You can choose the name of the executable file by using th "-o" option.
+
+\033[1mOPTIONS\033[0m
+
+        -o outname
+                Define an output file for the executable.
+                The next arg needs to be the path of the output file
+                
+        -stats
+		If you add this option when compiling a program, the executable file produced will always provide 
+		detailled informations about the memory allocation and re-allocation of nodes, you can also see the 
+		size of the free nodes list.
+
+        -help
+		Display this help.        
+
+\033[1mEXAMPLES\033[0m
+
+        +---------+
+        | test.wh |
+        +--+------+-------------------------------------+
+        |1 |function main:                              |
+        |2 |read Var1                                   |
+        |3 |%                                           |
+        |4 |	Var1 := (cons nil nil);                 |
+	|5 |    Var1 := (cons nil nil nil nil Var1)     |
+	|6 |%                                           |
+	|7 |write Var1                                  |
+        +--+--------------------------------------------+
+        
+        This file will be used to explain how the examples works.
+        
+        
+        
+                >>> wh test.wh
+        
+	This command compile the test.wh file and produce an executable file named a.out and an assembly code file named out.asm
+
+
+		>>> wh test.wh -o myProgram
+
+	This command will produce the same thing than later but the a.out file will be named myProgram
+
+
+		>>> wh test.wh -debug -o myProgram
+
+	This command will add the detailled informations printing at the end of myProgram execution
+
+
+        +--+--------------------------------------------+
+        |1 | >>> myProgram 3                            |
+	|2 |@                                           |
+	|3 |	nil                                     |
+	|4 |	@                                       |
+	|5 |		nil                             |
+	|6 |		@                               |
+	|7 |			nil                     |
+	|8 |			@                       |
+	|9 |				nil             |
+	|10|				@               |
+	|11|					nil     |
+	|12|					nil     |
+        |13|Nombre de demande d'allocation : 5          |
+        |14|Nombre de re-allocation de zone memoire : 3 |
+        |15|Nombre de noeud encore dans la freelist : 0 |
+        +--+--------------------------------------------+
+        
+
+\033[1mNON-BUGS\033[0m
+
+                >>> myProgram 3 5 7  
+        
+        This will not produce errors because the last parametres will be ignored
+
+		>>> myProgram 
+
+        This will not produce errors because non given args will be considered nil
+       
+        
+\033[1mBUGS\033[0m
+        
+        Now, we haven't found any bugs. If you find a bug please contact the developers.  
+
+
+\033[1mSEE ALSO\033[0m
+
+	whpp, whpp_TestsAuto, wh_TestAuto, wh_StressTest
+
+\033[1mAUTHORS\033[0m  
+
+        This WHILE compiler has been created by Gwendal Jouneaux and Timothée Schneider-Maunoury,
+        during the seconde year of ESIR, in a compilation project.
+

@@ -1,0 +1,7 @@
+function main :
+read Var1, Var2
+%
+	Var1 := (cons string Var1) ;
+	Var2 := (cons string Var2)
+%
+write Var2, Var1

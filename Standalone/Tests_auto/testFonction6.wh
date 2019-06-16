@@ -1,0 +1,14 @@
+function f1 :
+read Var1, Var2
+%
+	Res := Var1 =? Var2
+%
+write Res
+
+function main :
+read Var1, Var2
+%
+	Res := (f1 Var1 Var2) and Var1 ;
+	Res := (cons int Res)
+%
+write Res

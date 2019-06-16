@@ -1,0 +1,7 @@
+function main :
+read Var1
+%
+	Res := (hd ok?) ;
+	Res := (cons string Res)
+%
+write Res

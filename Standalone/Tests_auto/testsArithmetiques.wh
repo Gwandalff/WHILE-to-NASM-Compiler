@@ -1,0 +1,149 @@
+function plus :
+read Var1, Var2
+%
+	for Var2 do
+		Var1 := (cons nil Var1)
+	od
+%
+write Var1
+
+function mult :
+read Var1, Var2
+%
+	Res := nil ;
+	for Var2 do
+		Res := (plus Res Var1)
+	od
+%
+write Res
+
+function pow :
+read Var1, Var2
+%
+	Res := (cons nil nil) ;
+	for Var2 do
+		Res := (mult Res Var1)
+	od
+%
+write Res
+
+function minus :
+read Var1, Var2
+%
+	for Var2 do
+		Var1 := (tl Var1)
+	od
+%
+write Var1
+
+function greater :
+read Var1, Var2
+%
+	True := (cons nil nil) ;
+	if Var1 =? Var2 then
+		Res := nil
+	else
+		if (minus Var1 Var2) =? nil then
+			Res := nil
+		else
+			Res := True
+		fi
+	fi
+%
+write Res
+
+function div :
+read Var1, Var2
+%
+	if Var2 =? nil then
+		Var1 := nil
+	else
+		Quotient := nil ;
+		Reste := nil ;
+		while (greater Var1 Var2) or Var1 =? Var2 do
+			Var1 := (minus Var1 Var2) ;
+			Quotient := (cons nil Quotient) 
+		od
+	fi
+%
+write Quotient, Var1
+
+function pgcd :
+read Var1, Var2
+%
+	if (greater Var2 Var1) then
+		Var1, Var2 := Var2, Var1
+	fi ;
+	Boucle := (cons nil nil) ;
+	while Boucle do
+		Quotient, Reste := (div Var1 Var2) ;
+		if Reste =? nil then
+			Boucle := nil ;
+			Pgcd := Var2
+		fi ;
+		Var1, Var2 := Var2, Reste
+	od
+%
+write Pgcd
+
+function fact :
+read Var1
+%
+	Fact := (cons nil nil) ;
+	while Var1 do
+		Fact := (mult Fact Var1) ;
+		Var1 := (tl Var1)
+	od
+%
+write Fact
+
+function sqrt :
+read Var1
+%
+	Sqrt := (cons nil nil) ;
+	Nb := Var1 ;
+	if Var1 and not (Var1 =? (cons nil nil)) then
+		Sqrt, Reste := (div Var1 (cons nil nil nil)) ;
+		while (not ((mult Sqrt Sqrt) =? Nb)) and Sqrt do
+			Sqrt := (tl Sqrt)
+		od
+	else	
+		Sqrt := Var1
+	fi
+%
+write Sqrt
+
+function main :
+read Var1, Var2, Var3
+%
+	if Var1 =? plus then
+		Res := (plus Var2 Var3)
+	fi ;
+	if Var1 =? mult then
+		Res := (mult Var2 Var3)
+	fi ;
+	if Var1 =? pow then
+		Res := (pow Var2 Var3)
+	fi ;
+	if Var1 =? minus then
+		Res := (minus Var2 Var3)
+	fi ;
+	if Var1 =? div then
+		Res, Res2 := (div Var2 Var3) ;
+		Res2 := (cons int Res2)
+	fi ;
+	if Var1 =? greater then
+		Res := (greater Var2 Var3)
+	fi ;
+	if Var1 =? pgcd then
+		Res := (pgcd Var2 Var3)
+	fi ;
+	if Var1 =? fact then
+		Res := (fact Var2)
+	fi ;
+	if Var1 =? sqrt then
+		Res := (sqrt Var2)
+	fi ;
+	Res := (cons int Res)
+%
+write Res, Res2

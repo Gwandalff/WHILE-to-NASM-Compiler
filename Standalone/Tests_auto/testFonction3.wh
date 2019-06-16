@@ -1,0 +1,13 @@
+function f1 :
+read Var1, Var2
+%
+	nop
+%
+write Var1, Var2
+
+function main :
+read Var1
+%
+	Res := (f1 Var1 nil) or nil
+%
+write Res

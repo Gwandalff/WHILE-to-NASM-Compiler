@@ -1,0 +1,9 @@
+function main :
+read Var1
+%
+	for Var1 do
+		Var1 := (cons nil Var1)
+	od;
+	Var1 := (cons int Var1)
+%
+write Var1

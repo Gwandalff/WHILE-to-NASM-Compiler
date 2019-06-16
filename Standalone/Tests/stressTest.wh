@@ -1,0 +1,25 @@
+read Res
+%
+    Res := nil and nil ;
+    Res := (list (hd nil) Var1 Var2) ;
+    Res := (not (nil =? nil)) ;
+    Res := (cons nil Res) ;
+    Res := nil and nil ;
+    Res := (list (hd nil) Var1 Var2) ;
+    Res := (not (nil =? nil)) ;
+    Res := (cons nil Res) ;
+    Res := (not (nil =? nil)) ;
+    Res := (cons nil Res) ;
+    Res := nil and nil ;
+    Res := (list (hd nil) Var1 Var2) ;
+    Res := (not (nil =? nil)) ;
+    Res := (cons nil Res) ;
+    Res := nil and nil ;
+    Res := (list (hd nil) Var1 Var2) ;
+    Res := (not (nil =? nil)) ;
+    Res := (cons nil Res) ;
+    Res := (not (nil =? nil)) ;
+    Res := (cons nil Res) ;
+	nop
+%
+write Res

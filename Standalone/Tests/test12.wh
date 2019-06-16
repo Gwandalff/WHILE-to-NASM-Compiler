@@ -1,0 +1,8 @@
+read Var1
+%
+	Var1 := (hd Var1) ;
+	Var1 := (tl Var1) ;
+	Var1 := (list (tl Var1) (cons Var1 (tl (tl (hd Var1)))) Var1 Var1 Var1)
+%
+write Var1
+

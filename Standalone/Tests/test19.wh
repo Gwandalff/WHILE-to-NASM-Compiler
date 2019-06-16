@@ -1,0 +1,17 @@
+function f1 :
+read Var2, Var3
+%
+	if (not (cons nil nil) =? Var3) then
+		Var2 := nil
+	else
+		Var2 := (cons nil nil)
+	fi
+%
+write Var1, Var2
+
+function main :
+read Var1, Var2
+%
+	Var1, Var2 := (f1 Var1 Var2)
+%
+write Var2, Var1

@@ -1,0 +1,9 @@
+read Var1, Var2, Var3, Var4
+%
+	Res1 := (cons (cons Var1 Var2) Var3);
+	Res1 := (cons Var1 (cons Var2 Var3)) ;
+	Res1 := (cons (cons Var1 Var2) (cons Var3 Var4)) ;
+	Res1 := (cons (cons (cons Var1 Var2) Var3) Var4)
+%
+write Res1
+

@@ -1,0 +1,15 @@
+read Var1, Var2, Var3
+%
+	Res1 := Var1 and Var2 and Varn ;
+	nop ;
+	Res1 := Var1 and Var2 ;
+	nop ;
+	Res1 := Var1 or Var2 ;
+	nop ;
+	Res1 := Var1 and Var2 and Var3  and nil ;
+	nop ;
+	Res1 := Var1 or Var2 or Var3 ;
+	nop ;
+	Res1 := Var1 or Var2 and Var3 or nil
+%
+write Res1

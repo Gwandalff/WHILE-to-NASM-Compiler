@@ -1,0 +1,12 @@
+function main :
+read Var1, Var2, Var3, Var4
+%
+	Res1 := (cons Var1) ;
+	Res1 := (cons Var1 Var2) ;
+	Res1 := (cons Var1 Var2 Var3) ;
+	nop ;
+	Res1 := (cons Var1 Var2 Var3 Var4) ;
+	Res1 := (cons Var1 Var2 Var3 Var4 nil)
+%
+write Res1
+

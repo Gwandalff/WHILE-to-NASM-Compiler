@@ -1,0 +1,11 @@
+read Var1, Var2
+%
+	Var1 := Var2 ;
+	nop ;
+	Var1 := Var2 and Var3 ;
+	nop ;
+	Var1 := Var2 and Var2 and Var2
+	
+%
+write Var2, Var1, Var2
+

@@ -1,0 +1,13 @@
+read Var1, Var2, Var3
+%
+	EgalABC := Var1 =? abc ;
+	EgalABC := (cons int EgalABC) ;
+
+	VarPlusUn := (cons nil Var2) ;
+	VarPlusUn := (cons int VarPlusUn) ;
+
+	VarMoinsUn := (tl Var3) ;
+	VarMoinsUn := (cons int VarMoinsUn)
+	
+%
+write EgalABC, VarPlusUn, VarMoinsUn

@@ -1,0 +1,9 @@
+read Var1
+%
+	Var2 := not Var1 ;
+	nop ;
+	Var2 := (cons Var1) and (not (Var2 =? Var1))
+	
+%
+write Var2
+

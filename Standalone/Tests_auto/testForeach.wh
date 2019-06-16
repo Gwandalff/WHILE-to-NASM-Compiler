@@ -1,0 +1,11 @@
+function main :
+read Var1, Var2, Var3, Var4
+%
+	List := (list Var2 Var3 Var4) ;
+	Res := Var1 ;
+	foreach Val in List do
+		Res := (cons Res Val)
+	od;
+	Res := (cons string Res)
+%
+write Res

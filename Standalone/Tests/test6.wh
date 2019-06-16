@@ -1,0 +1,8 @@
+read Var1, Var2, Var3, Var4
+%
+	Res1 := (list Var1) ;
+	Res1 := (list Var1 (cons Var2 Var3)) ;
+	nop ;
+	Res1 := (cons (list Var1 (cons Var2 Var3)) Var4)
+%
+write Res1

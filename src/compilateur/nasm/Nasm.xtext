@@ -1,0 +1,61 @@
+grammar compilateur.nasm.Nasm with org.eclipse.xtext.common.Terminals
+
+generate nasm "http://www.nasm.compilateur/Nasm"
+
+Program:
+	(function +=Function)+;
+
+Function:
+	'function' funcName=SYMBOL ':'
+	'read' input=Input 
+	'%' 
+	coms=Commands 
+	'%' 
+	'write' output=Output;
+	
+Input:
+	varsIn+=VARIABLE (',' varsIn+=VARIABLE)*;
+	
+Output:
+	varsOut+=VARIABLE (',' varsOut+=VARIABLE)*;
+		
+Commands :
+	commands+=Command (';' commands+=Command)*;
+	
+Command:
+	nop="nop" |
+	'if' exprIf=Expr 'then' comIf=Commands ('else' comElse=Commands)? 'fi' |
+	'while' exprWhile=Expr 'do' comWhile=Commands 'od' |
+	'for' exprFor=Expr 'do' comFor=Commands 'od' |
+	'foreach' varForeach=VARIABLE 'in' exprForeach=Expr 'do' comForeach=Commands 'od' |
+	vars+=VARIABLE (',' vars+=VARIABLE)* ':=' exprs+=Expr (',' exprs+=Expr)*;
+	
+Expr:
+	exprsOr+=ExprOr ('and' exprsOr+=ExprOr)*;
+	
+ExprOr:
+	exprsNot+=ExprNot ('or' exprsNot+=ExprNot)*;
+	
+ExprNot:
+	(not='not')? exprEq=ExprEq;
+	
+ExprEq:
+	exprsSimple+=ExprSimple ('=?' exprsSimple+=ExprSimple)? | '(' expr=Expr ')';
+	
+ExprSimple:
+	nil='nil' |
+	variable=VARIABLE | symb=SYMBOL | 
+	'(' 'cons' lExprCons=LExpr ')' |
+	'(' 'list' lExprList=LExpr ')' |
+	'(' 'hd' exprHd=Expr ')' |
+	'(' 'tl' exprTl=Expr ')' |
+	(=> '(' function=SYMBOL params=LExpr ')');
+	
+LExpr:
+	(exprs+=Expr)+;
+		
+terminal SYMBOL: ('a'..'z') SUITE;
+terminal VARIABLE : ('A'..'Z') SUITE;
+terminal SUITE : ('0'..'9'|'a'..'z'|'A'..'Z')* ((('-'|'+'|'.'|'/'|'_'|'&') | '->') ('0'..'9'|'a'..'z'|'A'..'Z')+)* ('?'|'!')?;
+
+

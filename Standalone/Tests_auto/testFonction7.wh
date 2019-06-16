@@ -1,0 +1,21 @@
+function f1 :
+read Var1
+%
+	Res := (cons nil nil Var1)
+%
+write Res
+
+function f2 :
+read Var1
+%
+	Res := (f1 Var1)
+%
+write Res
+
+function main :
+read Var1
+%
+	Res := (f2 Var1) ;
+	Res := (cons int Res)
+%
+write Res

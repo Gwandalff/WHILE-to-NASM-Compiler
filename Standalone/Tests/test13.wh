@@ -1,0 +1,6 @@
+read Var1, Var2
+%
+	nop
+%
+write Var2, Var1, Var2
+

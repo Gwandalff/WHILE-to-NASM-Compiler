@@ -1,0 +1,7 @@
+function main:
+read Var
+%
+	Res := (cons (cons test affichage) (cons plus complexe));
+	Res := (cons Var Res)
+%
+write Res

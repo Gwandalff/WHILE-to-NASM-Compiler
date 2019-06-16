@@ -1,0 +1,23 @@
+function f1 :
+read Var2, Var3
+%
+	Var1 := (cons Var2 Var3) ;
+	Var1 := (cons string Var1)
+%
+write Var1, Var2
+
+function main :
+read Var1, Var2
+%
+	Var1 := (cons string Var1);
+	Var2, Var2 := (f1 Var1 Var2) ;
+	Var1, Var2 := Var2, Var1
+%
+write Var2, Var1
+
+function f1 :
+read Var1, Var2
+%
+	nop
+%
+write Var2, Var1

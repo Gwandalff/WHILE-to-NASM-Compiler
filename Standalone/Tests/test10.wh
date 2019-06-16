@@ -1,0 +1,11 @@
+read Var1, Var2
+%
+	Res1 := not Var3 ;
+	nop ;
+	Res1 := not (not Res1) ;
+	nop ;
+	Res1 := Var1 =? Var2 ;
+	nop ;
+	Res1 := not Var1 =? Var2
+%
+write Res1

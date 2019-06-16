@@ -1,0 +1,8 @@
+read Var1
+%
+	Res := (list (hd nil) Var1 Var2) and 
+	not ( (Var1 =? nil)  or  (tl Var1) )
+	
+%
+write Res
+

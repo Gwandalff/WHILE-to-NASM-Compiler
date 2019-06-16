@@ -1,0 +1,11 @@
+function main :
+read Var1
+%
+	Var3 := (list out-l e-m onde-O o) ;
+	Res := coucou-t ;
+	foreach Var2 in Var3 do
+		Res := (cons Res Var2)
+	od;
+	Res := (cons string Res)
+%
+write Res

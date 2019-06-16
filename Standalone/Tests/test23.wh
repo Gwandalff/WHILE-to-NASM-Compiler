@@ -1,0 +1,12 @@
+function main :
+read Var1, Var2
+%
+	Res := nil;
+	for Var2 do
+		for Var1 do
+			Res := (cons nil Res)
+		od
+	od;
+	Res := (cons int Res)
+%
+write Res

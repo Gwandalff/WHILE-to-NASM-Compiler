@@ -1,0 +1,63 @@
+#!/bin/sh
+
+OUTPUT="null"
+DEBUG="FALSE"
+
+###########################
+##     CATCH  ERRORS     ##
+###########################
+if [ $# = 0 ]
+then
+	echo "WH need at least 1 arg"
+	echo "you can use wh -help or wh -h to see the help"
+	exit
+fi
+
+###########################
+##      ... --- ...      ##
+###########################
+if [ $1 = "-h" ] || [ $1 = "-help" ]
+then
+	HELP=`cat help.txt`
+	echo  "$HELP" | less -r
+	exit
+fi
+
+
+###########################
+##     PARSING  ARGS     ##
+###########################
+FILE=$1
+
+shift
+
+if [ $# -ge 1 ] && [ $1 = "-stats" ]
+then
+	DEBUG="TRUE"
+	shift
+fi
+
+if [ $# = 2 ] && [ $1 = "-o" ]
+then
+	OUTPUT=$2
+fi
+
+###########################
+##   DO THE THING   ;)   ##
+###########################
+if [ -e $FILE ]
+then
+	java -jar wh.jar $FILE $DEBUG
+else
+	echo "$FILE doesn't exist"
+	exit
+fi
+
+if [ $OUTPUT = "null" ]
+then
+	nasm -f elf64 -o temp.o out.asm 2> /dev/null && ld temp.o -o a.out 2> /dev/null
+	rm temp.o 2> /dev/null
+else
+	nasm -f elf64 -o temp.o out.asm 2> /dev/null && ld temp.o -o $OUTPUT 2> /dev/null
+	rm temp.o 2> /dev/null
+fi

@@ -1,0 +1,7 @@
+function main :
+read Var1, Var2
+%
+	Var1 := (cons int Var1) ;
+	Var2 := (cons int Var2)
+%
+write Var2, Var1

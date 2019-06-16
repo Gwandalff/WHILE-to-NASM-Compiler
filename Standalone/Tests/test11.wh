@@ -1,0 +1,6 @@
+read Var1
+%
+	nop ;
+	Var1 := (cons nil Var1)
+%
+write Var1

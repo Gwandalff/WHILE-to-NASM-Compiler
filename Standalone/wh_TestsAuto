@@ -1,0 +1,648 @@
+#!/bin/sh
+
+#      COMPILE AND TEST EXECUTION
+
+if [ $# = 1 ]
+then
+	RESULTATS=$1
+else
+	RESULTATS="Results_tests"
+fi
+echo "\n***** Résultats des tests *****" > $RESULTATS
+echo "\n***** Résultats des tests *****"
+RESULT_OK="tmp1"
+RESULT_TEST="tmp2"
+
+
+##### Entiers et expressions booléennes #####
+echo "\nManipulation d'entiers et expressions booléennes" >> $RESULTATS
+echo "\nManipulation d'entiers et expressions booléennes"
+
+# Ecriture de 1 paramètre 
+echo "  -> Ecriture de 1 paramètre  : \c" >> $RESULTATS
+echo "  -> Ecriture de 1 paramètre  : \c"
+./wh ./Tests_auto/testParam1.wh 2> /dev/null 
+echo "875" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 875 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Ecriture de 2 paramètre
+echo "  -> Ecriture de 2 paramètres : \c" >> $RESULTATS
+echo "  -> Ecriture de 2 paramètres : \c"
+./wh ./Tests_auto/testParam2.wh 2> /dev/null
+echo "5\n1596" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 1596 5 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+#  Addition (+1)
+echo "  -> Addition (+1)            : \c" >> $RESULTATS
+echo "  -> Addition (+1)            : \c"
+./wh ./Tests_auto/testAddition1.wh 2> /dev/null
+echo "64" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 63 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+
+fi
+
+# Addition (+2)
+echo "  -> Addition (+2)            : \c" >> $RESULTATS
+echo "  -> Addition (+2)            : \c"
+./wh ./Tests_auto/testAddition2.wh 2> /dev/null
+echo "45" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 43 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Soustraction (-1)
+echo "  -> Soustraction (-1)        : \c" >> $RESULTATS
+echo "  -> Soustraction (-1)        : \c"
+./wh ./Tests_auto/testSoustraction1.wh 2> /dev/null
+echo "62" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 63 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+
+fi
+
+# Soustraction (-2)
+echo "  -> Soustraction (-2)        : \c" >> $RESULTATS
+echo "  -> Soustraction (-2)        : \c"
+./wh ./Tests_auto/testSoustraction2.wh 2> /dev/null
+echo "61" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 63 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+
+fi
+
+# Soustraction (0-1)
+echo "  -> Soustraction (1-2=0)     : \c" >> $RESULTATS
+echo "  -> Soustraction (1-2=0)     : \c"
+./wh ./Tests_auto/testSoustraction2.wh 2> /dev/null
+echo "0" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 1 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+
+fi
+
+# And Vrai
+echo "  -> Expression And vraie     : \c" >> $RESULTATS
+echo "  -> Expression And vraie     : \c"
+./wh ./Tests_auto/testAnd.wh 2> /dev/null 
+echo "1" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 4 4 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# And Faux
+echo "  -> Expression And fausse    : \c" >> $RESULTATS
+echo "  -> Expression And fausse    : \c"
+./wh ./Tests_auto/testAnd.wh 2> /dev/null 
+echo "0" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 4 0 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Or Vrai
+echo "  -> Expression Or vraie      : \c" >> $RESULTATS
+echo "  -> Expression Or vraie      : \c"
+./wh ./Tests_auto/testOr.wh 2> /dev/null 
+echo "1" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 4 0 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Or Faux
+echo "  -> Expression Or fausse     : \c" >> $RESULTATS
+echo "  -> Expression Or fausse     : \c"
+./wh ./Tests_auto/testOr.wh 2> /dev/null 
+echo "0" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 0 0 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Not Vrai
+echo "  -> Expression Not vraie     : \c" >> $RESULTATS
+echo "  -> Expression Not vraie     : \c"
+./wh ./Tests_auto/testNot.wh 2> /dev/null 
+echo "1" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 0 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Not Faux
+echo "  -> Expression Not fausse    : \c" >> $RESULTATS
+echo "  -> Expression Not fausse    : \c"
+./wh ./Tests_auto/testNot.wh 2> /dev/null 
+echo "0" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 4 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Egalite fausse
+echo "  -> Egalite fausse           : \c" >> $RESULTATS
+echo "  -> Egalite fausse           : \c"
+./wh ./Tests_auto/testEgalite.wh 2> /dev/null
+echo "0" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 4 5 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Egalite vraie
+echo "  -> Egalite vraie            : \c" >> $RESULTATS
+echo "  -> Egalite vraie            : \c"
+./wh ./Tests_auto/testEgalite.wh 2> /dev/null 
+echo "1" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 4 4 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+
+##### SYMBOLES #####
+echo "\nManipulation de symboles" >> $RESULTATS
+echo "\nManipulation de symboles"
+
+# Ecriture de 1 paramètre 
+echo "  -> Ecriture de 1 paramètre  : \c" >> $RESULTATS
+echo "  -> Ecriture de 1 paramètre  : \c"
+./wh ./Tests_auto/testParam3.wh 2> /dev/null
+echo "hello" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out hello >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Ecriture de 2 paramètre
+echo "  -> Ecriture de 2 paramètres : \c" >> $RESULTATS
+echo "  -> Ecriture de 2 paramètres : \c"
+./wh ./Tests_auto/testParam4.wh 2> /dev/null
+echo "hello\nworld" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out world hello >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Concaténation (a + b)
+echo "  -> Concaténation (a+b)      : \c" >> $RESULTATS
+echo "  -> Concaténation (a+b)      : \c"
+./wh ./Tests_auto/testConcat1.wh 2> /dev/null
+echo "abcdef" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out abc def >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Concaténation (b + a + c)
+echo "  -> Concaténation (b+a+c)    : \c" >> $RESULTATS
+echo "  -> Concaténation (b+a+c)    : \c"
+./wh ./Tests_auto/testConcat2.wh 2> /dev/null
+echo "defabcghi" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out abc def ghi >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Egalite fausse
+echo "  -> Egalite fausse           : \c" >> $RESULTATS
+echo "  -> Egalite fausse           : \c"
+./wh ./Tests_auto/testEgalite.wh 2> /dev/null
+echo "0" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out abc def >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Egalite vraie
+echo "  -> Egalite vraie            : \c" >> $RESULTATS
+echo "  -> Egalite vraie            : \c"
+./wh ./Tests_auto/testEgalite.wh 2> /dev/null 
+echo "1" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out abc abc >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+
+##### Structures de controle #####
+echo "\nStructures de contrôle" >> $RESULTATS
+echo "\nStructures de contrôle"
+
+# If 1
+echo "  -> Structure if else 1      : \c" >> $RESULTATS
+echo "  -> Structure if else 1      : \c"
+./wh ./Tests_auto/testIf.wh 2> /dev/null 
+echo "1" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 59 59 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# If 2
+echo "  -> Structure if else 2      : \c" >> $RESULTATS
+echo "  -> Structure if else 2      : \c"
+./wh ./Tests_auto/testIf.wh 2> /dev/null 
+echo "0" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 21 59 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# While 1
+echo "  -> Structure while 1        : \c" >> $RESULTATS
+echo "  -> Structure while 1        : \c"
+./wh ./Tests_auto/testWhile.wh 2> /dev/null 
+echo "16" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 21 5 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# While 2
+echo "  -> Structure while 2        : \c" >> $RESULTATS
+echo "  -> Structure while 2        : \c"
+./wh ./Tests_auto/testWhile.wh 2> /dev/null 
+echo "21" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 21 0 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# For 1
+echo "  -> Structure for 1          : \c" >> $RESULTATS
+echo "  -> Structure for 1          : \c"
+./wh ./Tests_auto/testFor.wh 2> /dev/null 
+echo "100" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 20 5 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# For 2
+echo "  -> Structure for 2          : \c" >> $RESULTATS
+echo "  -> Structure for 2          : \c"
+./wh ./Tests_auto/testFor.wh 2> /dev/null 
+echo "0" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 2156 0 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Foreach 1
+echo "  -> Structure foreach 1      : \c" >> $RESULTATS
+echo "  -> Structure foreach 1      : \c"
+./wh ./Tests_auto/testForeach.wh 2> /dev/null 
+echo "testconcatenationavecforeach" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out test concatenation avec foreach >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Foreach 2
+echo "  -> Structure foreach 2      : \c" >> $RESULTATS
+echo "  -> Structure foreach 2      : \c"
+./wh ./Tests_auto/testForeach.wh 2> /dev/null 
+echo "nilnilnilnilnilnilnilnil" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 1 1 1 1 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+##### Appels de fonctions #####
+echo "\nAppels de fonctions" >> $RESULTATS
+echo "\nAppels de fonctions"
+
+# Fonction non définie
+echo "  -> Erreur fonction non définie  : \c" >> $RESULTATS
+echo "  -> Erreur fonction non définie  : \c"
+echo "\c" > $RESULT_TEST
+./wh ./Tests_auto/testFonction1.wh 2>> $RESULT_TEST
+echo "La fonction fonc n'est pas définie !" > $RESULT_OK
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Erreur de typage 1 (nb de retours)
+echo "  -> Erreur de typage 1 (retours) : \c" >> $RESULTATS
+echo "  -> Erreur de typage 1 (retours) : \c"
+echo "\c" > $RESULT_TEST
+./wh ./Tests_auto/testFonction2.wh 2>> $RESULT_TEST
+echo "Erreur de typage : pas le même nombre d'expressions à gauche et à droite d'une affectation." > $RESULT_OK
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Erreur de typage 2 (nb de retours)
+echo "  -> Erreur de typage 2 (retours) : \c" >> $RESULTATS
+echo "  -> Erreur de typage 2 (retours) : \c"
+echo "\c" > $RESULT_TEST
+./wh ./Tests_auto/testFonction3.wh 2>> $RESULT_TEST
+echo "Erreur de typage : la fonction f1 devrait retourner exactement une variable." > $RESULT_OK
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Erreur de typage 3 (nb de paramètres)
+echo "  -> Erreur de typage 3 (params)  : \c" >> $RESULTATS
+echo "  -> Erreur de typage 3 (params)  : \c"
+echo "\c" > $RESULT_TEST
+./wh ./Tests_auto/testFonction4.wh 2>> $RESULT_TEST
+echo "Erreur de typage : pas le bon nombre d'arguments passés à la fonction f1." > $RESULT_OK
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Appel fonction classique
+echo "  -> Appel fonction classique     : \c" >> $RESULTATS
+echo "  -> Appel fonction classique     : \c"
+./wh ./Tests_auto/testFonction5.wh 2> /dev/null 
+echo "37" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 35 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Appel fonction bool
+echo "  -> Appel fonction expr bool     : \c" >> $RESULTATS
+echo "  -> Appel fonction expr bool     : \c"
+./wh ./Tests_auto/testFonction6.wh 2> /dev/null 
+echo "1" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 2 2 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+# Appel fonction emboitees
+echo "  -> Appel fonction emboitees     : \c" >> $RESULTATS
+echo "  -> Appel fonction emboitees     : \c"
+./wh ./Tests_auto/testFonction7.wh 2> /dev/null 
+echo "60" > $RESULT_OK
+echo "\c" > $RESULT_TEST
+./a.out 58 >> $RESULT_TEST 2> /dev/null
+DIFF=$(diff -u $RESULT_OK $RESULT_TEST)
+if [ "$DIFF" != "" ] 
+then
+	echo "\033[31;5m[KO]\033[0m" >> $RESULTATS
+	echo "\033[31;5m[KO]\033[0m"
+else
+	echo "\033[32m[OK]\033[0m" >> $RESULTATS
+	echo "\033[32m[OK]\033[0m"
+fi
+
+rm $RESULT_OK $RESULT_TEST 2> /dev/null
+rm a.out out.asm tableDesSymboles 2> /dev/null

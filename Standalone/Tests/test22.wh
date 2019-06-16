@@ -1,0 +1,9 @@
+function main :
+read Var1, Var2
+%
+	if Var1 =? Var2 then
+		Res := (cons nil nil)
+	fi ;
+	Res := (cons int Res)
+%
+write Res

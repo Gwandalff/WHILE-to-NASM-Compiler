@@ -1,0 +1,8 @@
+read Var1
+%
+	Res1 := (cons (list Var1 (cons Var2 Var3)) Var4
+			(list (tl Var1 or symb1 and Var3 or nil)
+			(cons symb4 (tl (tl (hd Var3)))))
+	)
+%
+write Res1

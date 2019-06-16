@@ -1,0 +1,11 @@
+function main :
+read Var1, Var2
+%
+	nop ;
+	while not (Var2 =? nil) do
+		Var1 := (tl Var1);
+		Var2 := (tl Var2)
+	od ;
+	Res := (cons int Var1)
+%
+write Res

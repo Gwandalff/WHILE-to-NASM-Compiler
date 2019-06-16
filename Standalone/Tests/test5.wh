@@ -1,0 +1,9 @@
+read Var1, Var2, Var3, Var4
+%
+	Res1 := (list Var1) ;
+	Res1 := (list Var1 Var2) ;
+	Res1 := (list Var1 Var2 Var3) ;
+	Res1 := (list Var1 Var2 Var3 Var4) ;
+	Res1 := (list Var1 Var2 Var3 Var4 nil)
+%
+write Res1
