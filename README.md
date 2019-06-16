@@ -9,6 +9,8 @@ L'objectif de ce projet est de créer un compilateur pour le langage WHILE vers 
 
 # Fonctionnement du compilateur
 
+Pour pouvoir compiler un fichier WHILE, vous aurez besoin d'avoir un système linux avec NASM d'installé.
+
 Le compilateur permet de traduire un programme .wh en fichier assembleur et en fichier executable.
 Il fonctionne comme suit :  
 `wh Tests/testsArithmetique.wh -o arith.out`  
